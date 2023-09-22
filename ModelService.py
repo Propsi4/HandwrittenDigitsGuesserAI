@@ -36,8 +36,8 @@ class ModelService:
         print("Loading weights from " + save_path)
         self.model = tf.keras.models.load_model(save_path)
     
-    def display_layer_output(self, layer=0):
-        image = load_img('digit3.png', target_size=(28, 28), color_mode='grayscale')
+    def display_layer_output(self, path, layer=0):
+        image = load_img(path, target_size=(28, 28), color_mode='grayscale')
         image = img_to_array(image)
         image_np = image.reshape(1, 28, 28, 1)
         # Display convolutional layers output
@@ -61,14 +61,14 @@ class ModelService:
 
         plt.show()
     
-    def display_conv_layers(self):
+    def display_conv_layers(self, path):
                 # Define a new Model that will take an image as input, and will output
         # intermediate representations for all layers in the previous model
         successive_outputs = [layer.output for layer in self.model.layers]
         visualization_model = tf.keras.models.Model(inputs = self.model.input, outputs = successive_outputs)
 
         # Prepare a random input image from the training set.
-        img = load_img("digit7.png", target_size=(28, 28), )  # this is a PIL image
+        img = load_img(path, target_size=(28, 28), )  # this is a PIL image
         img = img.convert('L')
         x   = img_to_array(img)                           # Numpy array with shape (28, 28, 1)
         x   = x.reshape((1,) + x.shape)                   # Numpy array with shape (1, 28, 28, 1)

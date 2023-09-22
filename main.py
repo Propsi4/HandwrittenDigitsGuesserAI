@@ -2,7 +2,6 @@ from ModelService import ModelService
 from matplotlib import pyplot as plt
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import numpy as np
-import tensorflow as tf
 # Path: main.py
 
 if __name__ == "__main__":
@@ -55,13 +54,15 @@ if __name__ == "__main__":
                     print("Error loading model")
             case 5:
                 try:
+                    path = input("Enter path to image: ")
                     layer = int(input("Enter layer number: "))
-                    modelService.display_layer_output(layer)
+                    modelService.display_layer_output(path, layer)
                 except:
                     print("Error displaying layer output")
             case 6:
                 try:
-                    modelService.display_conv_layers()
+                    path = input("Enter path to image: ")
+                    modelService.display_conv_layers(path)
                 except:
                     print("Error displaying convolutional layers")
             case 9:
